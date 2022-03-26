@@ -12,7 +12,7 @@ import {Emitters} from "../emmiters/emitters";
 
 
 export class HomeComponent implements OnInit {
-  message = 'You are not loggen in'
+  message = 'You are not logged in'
   constructor(
     private http: HttpClient,
     private cookieService: CookieService
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
         Emitters.authEmitter.emit(true);
       },
       err => {
-        this.message=`You are not loggen in`;
+        this.message=`You are not logged in`;
         Emitters.authEmitter.emit(false);
       }
     )
