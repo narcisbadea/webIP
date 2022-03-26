@@ -19,17 +19,20 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`);
-    this.http.get('http://api.vhealth.me/Auth', { headers: headers }).subscribe(
-      (res: any) =>{
-        this.message=`Hi ${res.userName}`;
-        Emitters.authEmitter.emit(true);
-      },
-      err => {
-        this.message=`You are not logged in`;
-        Emitters.authEmitter.emit(false);
-      }
-    )
+    if(this.cookieService.get('jwt')!=null) {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`);
+      this.http.get('http://api.vhealth.me/Auth', {headers: headers}).subscribe(
+        (res: any) => {
+          this.message = `Hi ${res.userName}`;
+          Emitters.authEmitter.emit(true);
+        }
+      )
+    }
+    else
+    {
+      this.message = `You are not logged in`;
+      Emitters.authEmitter.emit(false);
+    }
   }
 
 }
