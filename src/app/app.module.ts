@@ -9,6 +9,11 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { MedicComponent } from './medic/medic.component';
+import { PacientComponent } from './home/pacient/pacient.component';
+import { DefaultComponent } from './home/default/default.component';
+import { MedicDashboardComponent } from './medic-dashboard/medic-dashboard.component';
+import { AdaugarePacientComponent } from './adaugare-pacient/adaugare-pacient.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import {HttpClientModule} from "@angular/common/http";
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    MedicComponent,
+    PacientComponent,
+    DefaultComponent,
+    MedicDashboardComponent,
+    AdaugarePacientComponent
   ],
   imports: [
     BrowserModule,

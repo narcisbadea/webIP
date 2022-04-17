@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {CursorError} from "@angular/compiler/src/ml_parser/lexer";
 import {Emitters} from "../emmiters/emitters";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   message = 'You are not logged in'
   constructor(
     private http: HttpClient,
+    private router: Router,
     private cookieService: CookieService
   ) { }
 
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`);
     this.http.get('http://api.vhealth.me/Auth', { headers: headers }).subscribe(
       (res: any) =>{
-        this.message=`Hi ${res.userName}`;
+        this.router.navigate(['/medic-dashboard'])
         Emitters.authEmitter.emit(true);
       },
       err => {

@@ -5,35 +5,27 @@ import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-medic',
+  templateUrl: './medic.component.html',
+  styleUrls: ['./medic.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class MedicComponent implements OnInit {
   form: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService
-    ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      username: '',
-      password:''
+      tipMedic: ''
     })
-
   }
   submit(): void {
-    this.http.post('http://api.vhealth.me/Auth/register',this.form.getRawValue())
-      .subscribe(res => console.log(res));
-    var radio: any;
-    // @ts-ignore
-      this.cookieService.set('username', this.form.getRawValue().username);
-      this.router.navigate(['/medic'])
+    this.http.post(`http://api.vhealth.me/Auth/register/medic/${this.cookieService.get('username')}`,this.form.getRawValue())
+      .subscribe(res => console.log(res) );
+    this.router.navigate(['/login']);
   }
 }
