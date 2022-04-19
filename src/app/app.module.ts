@@ -14,6 +14,10 @@ import { PacientComponent } from './home/pacient/pacient.component';
 import { DefaultComponent } from './home/default/default.component';
 import { MedicDashboardComponent } from './medic-dashboard/medic-dashboard.component';
 import { AdaugarePacientComponent } from './adaugare-pacient/adaugare-pacient.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTableModule} from "@angular/material/table";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -28,13 +32,17 @@ import { AdaugarePacientComponent } from './adaugare-pacient/adaugare-pacient.co
     MedicDashboardComponent,
     AdaugarePacientComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatDividerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

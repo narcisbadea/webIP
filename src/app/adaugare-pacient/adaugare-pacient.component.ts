@@ -43,6 +43,7 @@ export class AdaugarePacientComponent implements OnInit {
     this.http.post('http://api.vhealth.me/Auth/register/pacient', this.form.getRawValue(), { headers: headers }).subscribe(
       (res: any) =>{
         console.log(res);
+        this.router.navigate(['/']);
       }
     )
   }
