@@ -8,17 +8,24 @@
       <mat-expansion-panel-header>
         <p class="medium-text">{{pacient.pacient.nume}} {{pacient.pacient.prenume}}</p>
       </mat-expansion-panel-header>
-      <p class="medium-text">Username: {{pacient.pacient.user.username}}</p>
-      <p class="medium-text">Varsta: {{pacient.pacient.varsta}}</p>
-      <p class="medium-text">CNP: {{pacient.pacient.cnp}}</p>
-      <p class="medium-text">Judet: {{pacient.pacient.judet.jud}}</p>
-      <p class="medium-text">Localitate: {{pacient.pacient.localitate}}</p>
-      <p class="medium-text">Strada: {{pacient.pacient.strada}}</p>
-      <p class="medium-text">Numar: {{pacient.pacient.numar}}</p>
-      <p class="medium-text">Telefon: {{pacient.pacient.telefon}}</p>
-      <p class="medium-text">Email: {{pacient.pacient.email}}</p>
-      <p class="medium-text">Profesie: {{pacient.pacient.profesie}}</p>
-      <p class="medium-text">Loc de munca: {{pacient.pacient.locdemunca}}</p>
+      <div class="row">
+        <div class="column">
+          <p class="medium-text">Username: {{pacient.pacient.user.username}}</p>
+          <p class="medium-text">Varsta: {{pacient.pacient.varsta}}</p>
+          <p class="medium-text">CNP: {{pacient.pacient.cnp}}</p>
+          <p class="medium-text">Judet: {{pacient.pacient.judet.jud}}</p>
+          <p class="medium-text">Localitate: {{pacient.pacient.localitate}}</p>
+          <p class="medium-text">Strada: {{pacient.pacient.strada}}</p>
+          <p class="medium-text">Numar: {{pacient.pacient.numar}}</p>
+          <p class="medium-text">Telefon: {{pacient.pacient.telefon}}</p>
+          <p class="medium-text">Email: {{pacient.pacient.email}}</p>
+          <p class="medium-text">Profesie: {{pacient.pacient.profesie}}</p>
+          <p class="medium-text">Loc de munca: {{pacient.pacient.locdemunca}}</p>
+        </div>
+        <div class="column">
+          <app-line-chart [id] = pacient.pacient.id></app-line-chart>
+        </div>
+      </div>
       <mat-action-row>
         <button class="btn btn-sm btn-primary">Close</button>
       </mat-action-row>

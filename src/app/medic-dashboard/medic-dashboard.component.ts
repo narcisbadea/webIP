@@ -5,7 +5,10 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {IMedicPacienti} from "../models/MedicPacienti";
+import {IPulsResult} from "../models/PulsResult";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-medic-dashboard',
@@ -23,30 +26,34 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class MedicDashboardComponent implements OnInit {
   add: FormGroup;
   pacienti: IMedicPacienti[];
-  private readonly _apiUrl = 'http://api.vhealth.me/pacienti';
+
+  private readonly _apiUrlPacienti = 'http://api.vhealth.me/pacienti';
+
   private readonly token = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`)
 
   dataSource: IMedicPacienti[];
-  columnsToDisplay = ['Nume', 'Prenume'];
   expandedElement: IMedicPacienti | null;
 
   constructor(
     private router: Router,
     private http: HttpClient,
     private cookieService: CookieService
-  ) { }
+  ) {   }
 
   ngOnInit(): void {
-    this.get().subscribe(pacienti => this.pacienti = pacienti);
+    this.getPacienti().subscribe(pacienti => this.pacienti = pacienti);
     this.dataSource = this.pacienti;
+
   }
 
   click(): void{
     this.router.navigate(['/adaugare-pacient']);
   }
 
-  get(): Observable<IMedicPacienti[]> {
-    return this.http.get<IMedicPacienti[]>(this._apiUrl, {headers:this.token} );
+  getPacienti(): Observable<IMedicPacienti[]> {
+    return this.http.get<IMedicPacienti[]>(this._apiUrlPacienti, {headers:this.token} );
   }
+
+
 };
 

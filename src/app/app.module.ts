@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
+import { ChartsModule } from 'ng2-charts';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MatDividerModule} from "@angular/material/divider";
     PacientComponent,
     DefaultComponent,
     MedicDashboardComponent,
-    AdaugarePacientComponent
+    AdaugarePacientComponent,
+    LineChartComponent
   ],
     imports: [
         BrowserModule,
@@ -41,7 +44,8 @@ import {MatDividerModule} from "@angular/material/divider";
         BrowserAnimationsModule,
         MatExpansionModule,
         MatTableModule,
-        MatDividerModule
+        MatDividerModule,
+        ChartsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
