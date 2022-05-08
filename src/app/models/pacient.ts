@@ -15,5 +15,5 @@ export interface IPacient extends IBase {
   telefon: string;
   email: string;
   profesie: string;
-  locdemunca: string;
+  locDeMunca: string;
 }
