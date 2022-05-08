@@ -20,6 +20,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { LineChartTempComponent } from './line-chart-temp/line-chart-temp.component';
+import { LineChartUmiditateComponent } from './line-chart-umiditate/line-chart-umiditate.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     DefaultComponent,
     MedicDashboardComponent,
     AdaugarePacientComponent,
-    LineChartComponent
+    LineChartComponent,
+    LineChartTempComponent,
+    LineChartUmiditateComponent
   ],
     imports: [
         BrowserModule,
