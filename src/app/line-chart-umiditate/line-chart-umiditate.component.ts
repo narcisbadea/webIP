@@ -31,13 +31,13 @@ export class LineChartUmiditateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUmiditate(this.id).subscribe((pulsuri) => {
-      pulsuri.forEach((item)=>{
+    this.getUmiditate(this.id).subscribe((valori) => {
+      valori.forEach((item)=>{
         this.valoriSenzor.push(item.valoare);
         this.timp.push(item.created);
       });
       console.log(this.valoriSenzor);
-      this.lineChartData = [ {data: this.valoriSenzor, label: 'Puls'} ];
+      this.lineChartData = [ {data: this.valoriSenzor, label: 'Umiditate'} ];
       this.lineChartLabels = this.timp;
     });
   }

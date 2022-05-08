@@ -20,7 +20,7 @@ export class LineChartTempComponent implements OnInit {
   valoriSenzor: number[] = [];
   timp: string[] = [];
 
-  private readonly _apiUrl = 'http://api.vhealth.me/temp';
+  private readonly _apiUrl = 'http://api.vhealth.me/temperatura';
   private readonly token = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`)
 
   constructor(
@@ -31,13 +31,13 @@ export class LineChartTempComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTemperaturi(this.id).subscribe((pulsuri) => {
-      pulsuri.forEach((item)=>{
+    this.getTemperaturi(this.id).subscribe((valori) => {
+      valori.forEach((item)=>{
         this.valoriSenzor.push(item.valoare);
         this.timp.push(item.created);
       });
       console.log(this.valoriSenzor);
-      this.lineChartData = [ {data: this.valoriSenzor, label: 'Puls'} ];
+      this.lineChartData = [ {data: this.valoriSenzor, label: 'Temperatura'} ];
       this.lineChartLabels = this.timp;
     });
   }
