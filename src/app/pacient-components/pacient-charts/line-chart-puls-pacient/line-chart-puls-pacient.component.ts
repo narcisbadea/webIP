@@ -1,26 +1,24 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IPuls} from "../models/puls";
+import {Component, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from "chart.js";
 import {Label} from "ng2-charts";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {Observable} from "rxjs";
-import {ISenzor} from "../models/senzor";
+import {ISenzor} from "../../../models/senzor";
 
 @Component({
-  selector: 'app-line-chart-temp',
-  templateUrl: './line-chart-temp.component.html',
-  styleUrls: ['./line-chart-temp.component.scss']
+  selector: 'app-line-chart-puls-pacient',
+  templateUrl: './line-chart-puls-pacient.component.html',
+  styleUrls: ['./line-chart-puls-pacient.component.scss']
 })
-export class LineChartTempComponent implements OnInit {
-  @Input() id: string;
+export class LineChartPulsPacientComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
   valoriSenzor: number[] = [];
   timp: string[] = [];
 
-  private readonly _apiUrl = 'http://api.vhealth.me/temperatura';
+  private readonly _apiUrl = 'http://api.vhealth.me/puls';
   private readonly token = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`)
 
   constructor(
@@ -31,19 +29,19 @@ export class LineChartTempComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTemperaturi(this.id).subscribe((valori) => {
-      valori.forEach((item)=>{
+    this.getPulsuri().subscribe((pulsuri) => {
+      pulsuri.forEach((item)=>{
         this.valoriSenzor.push(item.valoare);
         this.timp.push(item.created);
       });
       console.log(this.valoriSenzor);
-      this.lineChartData = [ {data: this.valoriSenzor, label: 'Temperatura'} ];
+      this.lineChartData = [ {data: this.valoriSenzor, label: 'Puls'} ];
       this.lineChartLabels = this.timp;
     });
   }
 
-  getTemperaturi(id: string): Observable<ISenzor[]> {
-    return this.http.get<ISenzor[]>(this._apiUrl + "/" + id, {headers: this.token});
+  getPulsuri(): Observable<ISenzor[]> {
+    return this.http.get<ISenzor[]>(this._apiUrl, {headers: this.token});
   }
 
 

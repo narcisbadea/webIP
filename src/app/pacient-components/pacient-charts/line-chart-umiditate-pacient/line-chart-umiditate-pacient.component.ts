@@ -1,20 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IPuls} from "../models/puls";
 import {ChartDataSets, ChartOptions, ChartType} from "chart.js";
 import {Label} from "ng2-charts";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {Observable} from "rxjs";
-import {ISenzor} from "../models/senzor";
+import {ISenzor} from "../../../models/senzor";
 
 @Component({
-  selector: 'app-line-chart-umiditate',
-  templateUrl: './line-chart-umiditate.component.html',
-  styleUrls: ['./line-chart-umiditate.component.scss']
+  selector: 'app-line-chart-umiditate-pacient',
+  templateUrl: './line-chart-umiditate-pacient.component.html',
+  styleUrls: ['./line-chart-umiditate-pacient.component.scss']
 })
-export class LineChartUmiditateComponent implements OnInit {
-  @Input() id: string;
+export class LineChartUmiditatePacientComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
   valoriSenzor: number[] = [];
@@ -31,7 +29,7 @@ export class LineChartUmiditateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUmiditate(this.id).subscribe((valori) => {
+    this.getUmiditate().subscribe((valori) => {
       valori.forEach((item)=>{
         this.valoriSenzor.push(item.valoare);
         this.timp.push(item.created);
@@ -42,8 +40,8 @@ export class LineChartUmiditateComponent implements OnInit {
     });
   }
 
-  getUmiditate(id: string): Observable<ISenzor[]> {
-    return this.http.get<ISenzor[]>(this._apiUrl + "/" + id, {headers: this.token});
+  getUmiditate(): Observable<ISenzor[]> {
+    return this.http.get<ISenzor[]>(this._apiUrl , {headers: this.token});
   }
 
 

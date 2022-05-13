@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {CursorError} from "@angular/compiler/src/ml_parser/lexer";
-import {Emitters} from "../emmiters/emitters";
+import {Emitters} from "./emmiters/emitters";
 import {Router} from "@angular/router";
 
 @Component({
@@ -24,7 +23,13 @@ export class HomeComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`);
     this.http.get('http://api.vhealth.me/Auth', { headers: headers }).subscribe(
       (res: any) =>{
-        this.router.navigate(['/medic-dashboard'])
+        if(this.cookieService.get('role') == 'medic') {
+          console.log("medic");
+          this.router.navigate(['/medic-dashboard']);
+        } else if(this.cookieService.get('role') == 'pacient'){
+          console.log("pacient");
+          this.router.navigate(['/pacient-dashboard']);
+        }
         Emitters.authEmitter.emit(true);
       },
       err => {

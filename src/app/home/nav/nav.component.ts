@@ -23,6 +23,7 @@ export class NavComponent implements OnInit {
 
   logout(): void {
     this.cookieService.delete('jwt');
+    this.cookieService.delete('role');
     Emitters.authEmitter.emit(false);
   }
 

@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.http.post<any>('http://api.vhealth.me/Auth/login',this.form.getRawValue())
       .subscribe((res: any) =>{
         this.cookieService.set('jwt', res.token);
+          this.cookieService.set('role', res.role);
         this.router.navigate(['/']);
         this.er="";
       },
