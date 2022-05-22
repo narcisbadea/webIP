@@ -24,6 +24,7 @@ import { PacientDashboardComponent } from './pacient-components/pacient-dashboar
 import { LineChartPulsPacientComponent } from './pacient-components/pacient-charts/line-chart-puls-pacient/line-chart-puls-pacient.component';
 import { LineChartUmiditatePacientComponent } from './pacient-components/pacient-charts/line-chart-umiditate-pacient/line-chart-umiditate-pacient.component';
 import { LineChartTemperaturaPacientComponent } from './pacient-components/pacient-charts/line-chart-temperatura-pacient/line-chart-temperatura-pacient.component';
+import { UpdatePacientComponent } from './medic-components/update-pacient/update-pacient.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LineChartTemperaturaPacientComponent } from './pacient-components/pacie
     PacientDashboardComponent,
     LineChartPulsPacientComponent,
     LineChartUmiditatePacientComponent,
-    LineChartTemperaturaPacientComponent
+    LineChartTemperaturaPacientComponent,
+    UpdatePacientComponent
   ],
     imports: [
         BrowserModule,

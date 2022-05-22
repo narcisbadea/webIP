@@ -7,6 +7,7 @@ import {MedicComponent} from "./medic-components/medic/medic.component";
 import {MedicDashboardComponent} from "./medic-components/medic-dashboard/medic-dashboard.component";
 import {AdaugarePacientComponent} from "./medic-components/adaugare-pacient/adaugare-pacient.component";
 import {PacientDashboardComponent} from "./pacient-components/pacient-dashboard/pacient-dashboard.component";
+import {UpdatePacientComponent} from "./medic-components/update-pacient/update-pacient.component";
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'medic', component:MedicComponent},
   {path: 'medic-dashboard',component:MedicDashboardComponent},
   {path: 'adaugare-pacient',component:AdaugarePacientComponent},
-  {path: 'pacient-dashboard', component:PacientDashboardComponent}
+  {path: 'pacient-dashboard', component:PacientDashboardComponent},
+  {path: 'update-pacient', component: UpdatePacientComponent}
 ];
 
 @NgModule({

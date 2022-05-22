@@ -31,6 +31,12 @@
       </div>
       <mat-action-row>
         <button class="btn btn-sm btn-primary">Close</button>
+        <form [formGroup]="edit" (submit)="clickEdit(pacient.pacient.id)">
+          <button class="btn btn-sm btn-primary">Edit</button>
+        </form>
+        <form [formGroup]="delete" (submit)="clickDelete(pacient.pacient.id)">
+          <button class="btn btn-sm btn-primary">Delete</button>
+        </form>
       </mat-action-row>
       <br><br>
     </mat-expansion-panel>

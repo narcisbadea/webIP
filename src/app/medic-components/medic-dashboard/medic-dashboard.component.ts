@@ -5,10 +5,8 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {IMedicPacienti} from "../../models/MedicPacienti";
-import {IPulsResult} from "../../models/PulsResult";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import {IPacient} from "../../models/pacient";
 
 @Component({
   selector: 'app-medic-dashboard',
@@ -25,6 +23,8 @@ import { Color, Label } from 'ng2-charts';
 
 export class MedicDashboardComponent implements OnInit {
   add: FormGroup;
+  edit: FormGroup;
+  delete: FormGroup;
   pacienti: IMedicPacienti[];
 
   private readonly _apiUrlPacienti = 'http://api.vhealth.me/pacienti';
@@ -50,10 +50,24 @@ export class MedicDashboardComponent implements OnInit {
     this.router.navigate(['/adaugare-pacient']);
   }
 
+  clickDelete(id: String): void{
+    this.deletePacient(id).subscribe();
+    setTimeout(function(){
+      location.reload();
+    }, 500);
+  }
+  clickEdit(id_pacient: string): void{
+    this.cookieService.set('id_pacient', id_pacient);
+    this.router.navigate(['/update-pacient']);
+  }
+  refresh(): void {
+    window.location.reload();
+  }
+  deletePacient(id: String): Observable<IPacient>{
+    return this.http.delete<IPacient>("http://api.vhealth.me/remove-pacient/" + id, {headers:this.token});
+  }
   getPacienti(): Observable<IMedicPacienti[]> {
     return this.http.get<IMedicPacienti[]>(this._apiUrlPacienti, {headers:this.token} );
   }
-
-
 };
 
