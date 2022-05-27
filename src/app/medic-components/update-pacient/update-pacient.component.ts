@@ -60,20 +60,17 @@ export class UpdatePacientComponent implements OnInit {
       this.form.controls['profesie'].setValue(this.pacient.profesie);
       this.form.controls['locDeMunca'].setValue(this.pacient.locDeMunca);
 
-    }, 1000);
+    }, 1200);
   }
 
 
   submit(): void {
-
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookieService.get('jwt')}`);
-    // console.log(this.form.getRawValue());
-    // this.http.post('http://api.vhealth.me/Auth/register/pacient', this.form.getRawValue(), { headers: headers }).subscribe(
-    //   (res: any) =>{
-    //     console.log(res);
-    //     this.router.navigate(['/']);
-    //   }
-    // )
+    this.http.put('http://api.vhealth.me/Pacient/'+this.id_pacient, this.form.getRawValue(), { headers: this.token }).subscribe(
+      (res: any) =>{
+        console.log(res);
+        this.router.navigate(['/']);
+      }
+    )
   }
   getPacient(id: string): Observable<IPacient> {
     return this.http.get<IPacient>("http://api.vhealth.me/pacient/"+id, {headers:this.token} );
