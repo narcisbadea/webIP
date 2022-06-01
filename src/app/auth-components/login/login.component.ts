@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
