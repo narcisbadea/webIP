@@ -1,0 +1,39 @@
+#btn{
+  left:85%;
+  width:160px;
+  height:35px;
+  position:relative;
+}
+
+.pacienti-panel{
+  width: 80%;
+  position: absolute;
+  top:20%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.mat-expansion-panel{
+  background-color:#E5CB9F;
+  border: solid black 1px;
+}
+.medium-text{
+  color: white;
+}
+
+.column {
+  float: left;
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.btn, .btn-sm, .btn-primary{
+  margin: 0 3px;
+}

@@ -1,0 +1,43 @@
+
+<form [formGroup]="add" (submit)="click()">
+  <button class="btn btn-sm btn-primary" id="btn" type="submit">Adauga Pacient</button>
+</form>
+<br><br>
+<section class='blue-bg'>
+  <div class='pacienti-panel'>
+    <mat-expansion-panel *ngFor='let pacient of pacienti'>
+      <mat-expansion-panel-header>
+        <p class="medium-text">{{pacient.pacient.nume}} {{pacient.pacient.prenume}}</p>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="column">
+          <p class="medium-text">Username: {{pacient.pacient.user.username}}</p>
+          <p class="medium-text">Varsta: {{pacient.pacient.varsta}}</p>
+          <p class="medium-text">CNP: {{pacient.pacient.cnp}}</p>
+          <p class="medium-text">Judet: {{pacient.pacient.judet.jud}}</p>
+          <p class="medium-text">Localitate: {{pacient.pacient.localitate}}</p>
+          <p class="medium-text">Strada: {{pacient.pacient.strada}}</p>
+          <p class="medium-text">Numar: {{pacient.pacient.numar}}</p>
+          <p class="medium-text">Telefon: {{pacient.pacient.telefon}}</p>
+          <p class="medium-text">Email: {{pacient.pacient.email}}</p>
+          <p class="medium-text">Profesie: {{pacient.pacient.profesie}}</p>
+          <p class="medium-text">Loc de munca: {{pacient.pacient.locDeMunca}}</p>
+        </div>
+        <div class="column">
+          <app-line-chart [id] = pacient.pacient.id></app-line-chart>
+          <app-line-chart-temp [id] = pacient.pacient.id></app-line-chart-temp>
+          <app-line-chart-umiditate [id] = pacient.pacient.id></app-line-chart-umiditate>
+        </div>
+      </div>
+      <mat-action-row>
+        <form [formGroup]="edit" (submit)="clickEdit(pacient.pacient.id)">
+          <button class="btn btn-sm btn-primary">Edit</button>
+        </form>
+        <form [formGroup]="delete" (submit)="clickDelete(pacient.pacient.id)">
+          <button class="btn btn-sm btn-primary">Delete</button>
+        </form>
+      </mat-action-row>
+      <br><br>
+    </mat-expansion-panel>
+  </div>
+</section>

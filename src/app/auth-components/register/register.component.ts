@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
     ) {
 
   }
@@ -28,6 +30,10 @@ export class RegisterComponent implements OnInit {
   }
   submit(): void {
     this.http.post('http://api.vhealth.me/Auth/register',this.form.getRawValue())
-      .subscribe(res => this.router.navigate(['/login']))
+      .subscribe(res => console.log(res));
+    var radio: any;
+    // @ts-ignore
+      this.cookieService.set('username', this.form.getRawValue().username);
+      this.router.navigate(['/medic'])
   }
 }
